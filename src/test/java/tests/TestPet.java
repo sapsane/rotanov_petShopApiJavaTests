@@ -71,7 +71,29 @@ public class TestPet {
                 assertEquals("Pet not found", responseBody,
                         "Текст ошибки не совпал с ожидаемым. Получен: "+responseBody)
         );
+    }
+    @Test
+    @Feature("Pet")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("evgenij rotanov")
+    public void testGetNonexistentPet() {
+        Response response = step("Отправить Get запрос на получении информации о несушествующем питомце", () ->
+                given()
+                        .contentType(ContentType.JSON)
+                        .header("Accept", "application/json")
+                        .when()
+                        .get(BASE_URL + "/pet/9999"));
 
+        String responseBody = response.getBody().asString();
+        step("Проверить что статус-код ответа ==404", () ->
+                assertEquals(404, response.getStatusCode(),
+                        "Код ответа не совпал с ожидаемым. Ответ: " + responseBody)
+        );
+
+        step("Проверить что текст ответа 'Pet deleted'", () ->
+                assertEquals("Pet not found", responseBody,
+                        "Текст ошибки не совпал с ожидаемым. Получен: " + responseBody)
+        );
 
     }
 }
