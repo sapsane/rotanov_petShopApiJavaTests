@@ -90,7 +90,7 @@ public class TestPet {
                         "Код ответа не совпал с ожидаемым. Ответ: " + responseBody)
         );
 
-        step("Проверить что текст ответа 'Pet deleted'", () ->
+        step("Проверить что текст ответа 'Pet not found'", () ->
                 assertEquals("Pet not found", responseBody,
                         "Текст ошибки не совпал с ожидаемым. Получен: " + responseBody)
         );
