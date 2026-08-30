@@ -128,7 +128,7 @@ public class TestPet {
         String responseBody = response.getBody().asString();
         int expectedCode=pet.getstatusCode();
 
-        step("Проверить, что статус-код ответа == 200", () ->
+        step("Проверить, что статус-код ответа == "+expectedCode, () ->
                 assertEquals(expectedCode, response.getStatusCode(),
                         "Код ответа не совпал с ожидаемым. Ответ: " + responseBody)
         );
@@ -141,7 +141,9 @@ public class TestPet {
                     }
             );
         }else {
-            assertTrue(response.asString().contains("Invalid pet status"));
+            step("Проверить что текст ответа 'Invalid pet status'", () ->
+            assertTrue(response.asString().contains("Invalid pet status"))
+            );
         }
 
 
