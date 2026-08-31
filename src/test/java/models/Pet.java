@@ -9,6 +9,7 @@ public class Pet {
         private List<String> photoUrls;
         private List<Tag> tags;
         private String status;
+        private int statusCode;
 
     public int getId() {
         return id;
@@ -56,6 +57,14 @@ public class Pet {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getstatusCode() {
+        return statusCode;
+    }
+
+    public void setstatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public static class Category{
